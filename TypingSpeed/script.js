@@ -17,6 +17,10 @@ let textArea = document.querySelector('textarea');
 let input = document.querySelector('#input');
 let finished = false;
 
+
+input.addEventListener('paste', (e) => e.preventDefault());
+input.addEventListener('contextmenu', (e) => e.preventDefault());
+
 input.addEventListener('input', ()=>{
     if(!startTime) startTime = new Date();
     console.log(curSentence)
