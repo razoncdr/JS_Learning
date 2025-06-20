@@ -23,8 +23,6 @@ input.addEventListener('contextmenu', (e) => e.preventDefault());
 
 input.addEventListener('input', ()=>{
     if(!startTime) startTime = new Date();
-    console.log(curSentence)
-    if(input) console.log(input.value);
     let result = document.querySelector("#result");
     if (!finished && input && input.value === curSentence) {
     endTime = new Date();
@@ -50,4 +48,17 @@ input.addEventListener('input', ()=>{
 //         result.textContent = "Not Done";
 //         result.style.color = "red";
 //     }
+})
+
+
+
+
+let restartBtn = document.querySelector("#restart");
+restartBtn.addEventListener("click", ()=>{
+    startTime = null;
+    endTime = null;
+    result.textContent="";
+    input.value = "";
+    input.disabled = false;
+    finished = false;
 })
