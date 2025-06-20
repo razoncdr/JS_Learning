@@ -61,13 +61,37 @@
 
 
 
-// for(var i=0;i<5;i++)
-// {
-//     setTimeout(()=>{console.log(i)}, 2000);
-// }
+for(var i=0;i<5;i++)
+{
+    setTimeout(()=>{console.log(i)}, 2000);
+}
+
+// setTimeout(()=>{console.log(0)}, 2000);
+// setTimeout(()=>{console.log(1)}, 2000);
+// setTimeout(()=>{console.log(2)}, 2000);
+// setTimeout(()=>{console.log(3)}, 2000);
 
 var i = 0;
-setTimeout(()=>{console.log(i++)}, 2000);
-setTimeout(()=>{console.log(i++)}, 2000);
-setTimeout(()=>{console.log(i++)}, 2000);
-setTimeout(()=>{console.log(i++)}, 2000);
+setTimeout(function(){
+    console.log(i++)
+}, 2000);
+setTimeout(function(){
+    console.log(i++)
+}, 2000);
+setTimeout(function(){
+    console.log(i++)
+}, 2000);
+setTimeout(function(){
+    console.log(i++)
+}, 2000);
+
+
+function a(i){
+  console.log(i);
+}
+for(var i=0;i<=5;i++){
+  function b(j){
+    setTimeout(() => a(j),j*1000);
+  }
+  b(i);
+}

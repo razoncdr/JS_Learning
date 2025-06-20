@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Speed Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    #target {
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Typing Speed Test</h2>
+  <div id="target">Loading...</div>
+  <textarea id="input" rows="4" cols="50" placeholder="Start typing here..."></textarea>
+  <div id="result"></div>
+
+  <script>
+    const sentences = [
+      "The quick brown fox jumps over the lazy dog.",
+      "JavaScript is a powerful and flexible language.",
+      "Practice makes perfect in programming.",
+      "Typing fast is a useful skill for developers.",
+      "DOM manipulation helps make interactive websites."
+    ];
+
+    const target = document.getElementById('target');
+    const input = document.getElementById('input');
+    const result = document.getElementById('result');
+
+    let startTime, endTime, currentSentence;
+
+    // Load random sentence
+    function startTest() {
+      currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
+      target.textContent = currentSentence;
+      input.value = "";
+      result.textContent = "";
+      startTime = null;
+    }
+
+    input.addEventListener('input', () => {
+      if (!startTime) {
+        startTime = new Date();
+      }
+
+      if (input.value === currentSentence) {
+        endTime = new Date();
+        const timeTaken = (endTime - startTime) / 1000; // in seconds
+        const wordCount = currentSentence.trim().split(/\s+/).length;
+        const wpm = Math.round((wordCount / timeTaken) * 60);
+        result.textContent = `🎉 Completed! Your speed: ${wpm} WPM`;
+      }
+    });
+
+    startTest();
+  </script>
+
+</body>
+</html>
