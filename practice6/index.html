@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Scroll Metrics Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Scroll Metrics Visualizer</h1>
+
+  <div class="scroll-box" id="box">
+    <div class="content">
+      <p>This is a tall content box to enable scrolling.</p>
+      <p>Scroll down and see how values change below!</p>
+      <!-- Repeat content to allow scrolling -->
+      <p>Lorem ipsum dolor sit amet.</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>   
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>   
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>End of content.</p>
+      <p>End of content.</p>
+      <p>End of content.</p>
+    </div>
+  </div>
+
+  <div class="info">
+    <h2>ScrollBox Metrics</h2>
+    <p><strong>scrollTop:</strong> <span id="scrollTopVal">0</span></p>
+    <p><strong>clientHeight:</strong> <span id="clientHeightVal">0</span></p>
+    <p><strong>offsetHeight:</strong> <span id="offsetHeightVal">0</span></p>
+  </div>
+
+  <div class="info">
+    <h2>Document Metrics</h2>
+    <p><strong>document.scrollTop:</strong> <span id="docScrollTop">0</span></p>
+    <p><strong>document.clientHeight:</strong> <span id="docClientHeight">0</span></p>
+    <p><strong>document.scrollHeight:</strong> <span id="docScrollHeight">0</span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
