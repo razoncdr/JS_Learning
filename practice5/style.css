@@ -1,0 +1,83 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background-color: #00ccff;
+  width: 0%;
+  z-index: 999;
+}
+
+section {
+  transition: background-color 0.5s ease;
+}
+
+section.active-section {
+  background-color: #b9d9f5; /* light blue */
+}
+
+nav {
+  position: fixed;
+  top: 5px;
+  width: 100%;
+  background: #222;
+  padding: 10px;
+  z-index: 100;
+}
+
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+section {
+  height: 100vh;
+  padding: 60px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+#scrollPercent {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: #222;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 99;
+}
+
+
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  padding: 10px;
+}
+
+
+#bottomFade {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 998;
+}
