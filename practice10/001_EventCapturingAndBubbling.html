@@ -1,3 +1,5 @@
+<!-- Event Capturing and Bubbling -->
+ 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,16 +22,27 @@
       outer.addEventListener("click", () => console.log("Capture: Outer"),
         true
       );  
-      outer.addEventListener("click", () => console.log("Capture: Outer"),
-        true
-      );
+      // outer.addEventListener("click", () => console.log("Capture: Outer"),
+      //   true
+      // );
       outer.addEventListener("click", () => console.log("Bubble: Outer"));
-      outer.addEventListener("click", () => console.log("Bubble: Outer"));
+      // outer.addEventListener("click", () => console.log("Bubble: Outer"));
 
-      middle.addEventListener("click",() => console.log("Capture: Middle"),
+      middle.addEventListener("click",() => 
+        console.log("Capture: Middle"),
         true
       );
-      middle.addEventListener("click", () => console.log("Bubble: Middle"));
+      middle.addEventListener("click", () => {
+        console.log("Bubble: Middle2");});
+        
+      middle.addEventListener("click", (e) => {
+        e.stopImmediatePropagation();
+        console.log("Bubble: Middle1");});
+
+        
+        
+        middle.addEventListener("click", () => {
+        console.log("Bubble: Middle3");});
 
       inner.addEventListener("click",() => console.log("Capture: Inner"),
         true

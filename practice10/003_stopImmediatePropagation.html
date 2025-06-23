@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>stopImmediatePropagation Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal">
+      <h2>Modal Window</h2>
+      <p>This has multiple listeners. Only one will run.</p>
+    </div>
+  </div>
+
+  <script>
+    const overlay = document.getElementById("overlay");
+    const modal = document.getElementById("modal");
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    // Second listener — will NOT run
+    modal.addEventListener("click", () => {
+      console.log("🛑 Modal listener (Before stopping)");
+    });
+    
+    // First listener — stops everything
+    modal.addEventListener("click", (e) => {
+        // console.log(e);
+      e.stopImmediatePropagation();
+      console.log("🛑 First modal listener (stopped everything else)");
+    });
+
+    // Second listener — will NOT run
+    modal.addEventListener("click", () => {
+      console.log("🚨 Second modal listener — should NOT appear");
+    });
+
+    // Third listener — also blocked
+    modal.addEventListener("click", () => {
+      console.log("🚨 Third modal listener — should NOT appear");
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>stopPropagation Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal">
+      <h2>🪟 Modal Window</h2>
+      <p>Click inside this box won't close the modal.</p>
+      <p>Click outside (on the dark area) will close it.</p>
+    </div>
+  </div>
+
+  <script>
+    const overlay = document.getElementById("overlay");
+    const modal = document.getElementById("modal");
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+      console.log("Clicked in overlay");
+    //   alert("Modal closed!");
+    });
+
+    
+    modal.addEventListener("click", () => {
+      console.log("Clicked event in second listener");
+    });
+    modal.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevents overlay from receiving the event
+      console.log("Clicked inside modal — event stopped.");
+    });
+  </script>
+
+</body>
+</html>
