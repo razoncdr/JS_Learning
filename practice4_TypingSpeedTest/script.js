@@ -1,4 +1,3 @@
-
 // Set the target text to type
 let target = document.querySelector("#target");
 
@@ -21,7 +20,7 @@ let finished = false;
 input.addEventListener('paste', (e) => e.preventDefault());
 input.addEventListener('contextmenu', (e) => e.preventDefault());
 input.focus();
-console.log(document.activeElement);
+// console.log(document.activeElement);
 
 
 
@@ -56,14 +55,22 @@ input.addEventListener('input', ()=>{
     })
     
     
-    
-    
     let restartBtn = document.querySelector("#restart");
     restartBtn.addEventListener("click", ()=>{
-    startTime = null;
+        startTime = null;
+        // practice getSelection, selectionStart and selectionEnd
+        //
+        // console.log(window.getSelection().toString());
+        // console.log(input.value.substring(input.selectionStart, input.selectionEnd));
     endTime = null;
     result.textContent="";
     input.value = "";
     input.disabled = false;
     finished = false;
 })
+
+// practice blur()
+//
+// document.querySelector('h2').addEventListener("mouseover", ()=>{
+//     input.blur();
+// })

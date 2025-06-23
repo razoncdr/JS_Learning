@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feature Tour Guide</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 40px;
+    }
+
+    .feature {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .highlight {
+      outline: 3px solid #4CAF50;
+      background-color: #eaffea;
+      transition: all 0.3s ease;
+    }
+
+    #tooltip {
+      background: #333;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: none;
+      max-width: 300px;
+    }
+
+    .controls {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🚀 Welcome to Your App</h2>
+
+  <div id="tooltip"></div>
+
+  <div id="createTaskBtn" class="feature" tabindex="0">📝 <strong>Create Task:</strong> Add new tasks here.</div>
+  <div id="taskList" class="feature" tabindex="0">📋 <strong>Task List:</strong> See all your tasks.</div>
+  <div id="userProfile" class="feature" tabindex="0">👤 <strong>User Profile:</strong> View your profile.</div>
+  <div id="settingsIcon" class="feature" tabindex="0">⚙️ <strong>Settings:</strong> Manage preferences.</div>
+
+  <div class="controls">
+    <button id="prevBtn">⏪ Back</button>
+    <button id="nextBtn">Next ⏩</button>
+  </div>
+
+  <script>
+    const steps = [
+      { selector: "#createTaskBtn", message: "Click here to create a new task." },
+      { selector: "#taskList", message: "Here you can view and manage your tasks." },
+      { selector: "#userProfile", message: "This section shows your profile and stats." },
+      { selector: "#settingsIcon", message: "Use this to update your settings." }
+    ];
+
+    let currentStep = 0;
+
+    const tooltip = document.getElementById("tooltip");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    function showStep(index) {
+      if (index < 0 || index >= steps.length) return;
+
+      // Remove previous highlight
+      document.querySelectorAll(".highlight").forEach(el => el.classList.remove("highlight"));
+
+      const step = steps[index];
+      const element = document.querySelector(step.selector);
+
+      element.classList.add("highlight");
+      element.focus();
+      tooltip.textContent = step.message;
+      tooltip.style.display = "block";
+
+      // Enable/disable buttons
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === steps.length - 1;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+
+    // Start on first step
+    showStep(currentStep);
+  </script>
+
+</body>
+</html>
