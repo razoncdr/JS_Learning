@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="outer" style="padding: 30px; background: #ccc">
+      Outer
+      <div id="middle" style="padding: 30px; background: #aaa">
+        Middle
+        <div id="inner" style="padding: 30px; background: #888">
+          Inner (Click Me)
+        </div>
+      </div>
+    </div>
+
+    <script>
+      outer.addEventListener("click", () => console.log("Capture: Outer"),
+        true
+      );  
+      outer.addEventListener("click", () => console.log("Capture: Outer"),
+        true
+      );
+      outer.addEventListener("click", () => console.log("Bubble: Outer"));
+      outer.addEventListener("click", () => console.log("Bubble: Outer"));
+
+      middle.addEventListener("click",() => console.log("Capture: Middle"),
+        true
+      );
+      middle.addEventListener("click", () => console.log("Bubble: Middle"));
+
+      inner.addEventListener("click",() => console.log("Capture: Inner"),
+        true
+      );
+      inner.addEventListener("click", () => console.log("Bubble: Inner"));
+    </script>
+  </body>
+</html>
