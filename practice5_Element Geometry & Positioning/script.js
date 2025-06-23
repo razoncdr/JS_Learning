@@ -52,15 +52,16 @@ window.addEventListener("scroll", () => {
   document.getElementById("scrollPercent").textContent = `${Math.round(
     scrollPercent
   )}%`;
-    // Detect bottom and show fade effect
-const isAtBottom = scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 5;
-const fadeOverlay = document.getElementById("bottomFade");
+  // Detect bottom and show fade effect
+  const isAtBottom =
+    scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 5;
+  const fadeOverlay = document.getElementById("bottomFade");
 
-if (isAtBottom) {
-  fadeOverlay.style.opacity = 1;
-} else {
-  fadeOverlay.style.opacity = 0;
-}
+  if (isAtBottom) {
+    fadeOverlay.style.opacity = 1;
+  } else {
+    fadeOverlay.style.opacity = 0;
+  }
 });
 
 // Smooth scroll to section on nav click

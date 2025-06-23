@@ -1,0 +1,35 @@
+body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: 30px repeat(8, 60px);
+      grid-template-rows: repeat(8, 60px) 30px;
+      border: 2px solid #222;
+    }
+    .label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+    .tile {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      cursor: pointer;
+      user-select: none;
+    }
+    .light { background: #f0d9b5; }
+    .dark  { background: #b58863; }
+    .highlight { background: yellow !important; }
+    .dragging {
+      opacity: 0.5;
+    }

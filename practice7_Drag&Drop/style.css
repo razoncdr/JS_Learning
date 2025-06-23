@@ -1,0 +1,14 @@
+#sortableList {
+  list-style: none;
+  padding: 0;
+}
+#sortableList li {
+  background: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: grab;
+  border: 1px solid #ccc;
+}
+#sortableList li.dragging {
+  opacity: 0.5;
+}
