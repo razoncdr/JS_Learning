@@ -49,17 +49,21 @@
     <script>
       let selectedShape = null;
 
-      document.getElementById("circleBtn").addEventListener("click", (e) => {
-        //   e.stopPropagation();
-        selectedShape = "circle";
-        console.log("circle button clicked. ");
-      });
+      document.querySelector(".sidebar").addEventListener("click", (e)=>{
+        if(e.target.className=="sidebar") return;
+        selectedShape = e.target.className;
+        console.log(selectedShape);
+      })
 
-      document.getElementById("rectangleBtn").addEventListener("click", (e) => {
-        //   e.stopPropagation();
-        selectedShape = "rectangle";
-        console.log("rectangle button clicked. ");
-      });
+      // document.getElementById("circleBtn").addEventListener("click", (e) => {
+      //   selectedShape = "circle";
+      //   console.log("circle button clicked. ");
+      // });
+
+      // document.getElementById("rectangleBtn").addEventListener("click", (e) => {
+      //   selectedShape = "rectangle";
+      //   console.log("rectangle button clicked. ");
+      // });
 
       document.querySelector(".main").addEventListener("click", (e) => {
         if (!selectedShape) return;
