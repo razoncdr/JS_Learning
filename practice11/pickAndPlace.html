@@ -49,38 +49,48 @@
     <script>
       let selectedShape = null;
 
-      document.querySelector(".sidebar").addEventListener("click", (e)=>{
-        if(e.target.classList.contains("sidebar")) return;
+      document.querySelector(".sidebar").addEventListener("click", (e) => {
+        if (e.target.classList.contains("sidebar")) return;
         selectedShape = e.target.className;
         console.log(selectedShape);
-      })
+      });
 
-      // document.getElementById("circleBtn").addEventListener("click", (e) => {
-      //   selectedShape = "circle";
-      //   console.log("circle button clicked. ");
-      // });
+      let isDrawing = false;
+      let main = document.querySelector(".main");
 
-      // document.getElementById("rectangleBtn").addEventListener("click", (e) => {
-      //   selectedShape = "rectangle";
-      //   console.log("rectangle button clicked. ");
-      // });
+      main.addEventListener("mousedown", (e) => {
+        isDrawing = true;
+        drawShape(e);
+        console.log("mousedown");
+      });
 
-      document.querySelector(".main").addEventListener("click", (e) => {
+      main.addEventListener("mousemove", (e) => {
+        if (isDrawing) {
+          drawShape(e);
+        }
+        console.log("mousemove");
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDrawing = false;
+        console.log("mouseup");
+      });
+
+      function drawShape(e) {
         if (!selectedShape) return;
 
-        // Create a new element each time
         const newElement = document.createElement("div");
         newElement.className = selectedShape + " placed";
-        const mainRect = e.currentTarget.getBoundingClientRect();
+
+        const mainRect = main.getBoundingClientRect();
         const x = e.clientX - mainRect.left;
         const y = e.clientY - mainRect.top;
 
-        if(x<45 || y<45) return ;
-        newElement.style.left = x - 55 + "px"; // Center the shape
-        newElement.style.top = y - 55 +"px";
-        e.currentTarget.appendChild(newElement);
-        console.log("main button clicked. ");
-      });
+        newElement.style.left = x - 45 + "px";
+        newElement.style.top = y - 45 + "px";
+
+        main.appendChild(newElement);
+      }
     </script>
   </body>
 </html>
