@@ -50,7 +50,7 @@
       let selectedShape = null;
 
       document.querySelector(".sidebar").addEventListener("click", (e)=>{
-        if(e.target.className=="sidebar") return;
+        if(e.target.classList.contains("sidebar")) return;
         selectedShape = e.target.className;
         console.log(selectedShape);
       })
@@ -75,6 +75,7 @@
         const x = e.clientX - mainRect.left;
         const y = e.clientY - mainRect.top;
 
+        if(x<45 || y<45) return ;
         newElement.style.left = x - 55 + "px"; // Center the shape
         newElement.style.top = y - 55 +"px";
         e.currentTarget.appendChild(newElement);
