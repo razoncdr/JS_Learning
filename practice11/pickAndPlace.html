@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shape Placer</title>
+    <style>
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+      .sidebar {
+        background-color: beige;
+        width: 20vw;
+        padding: 10px;
+      }
+      .circle,
+      .rectangle {
+        width: 90px;
+        height: 90px;
+        margin: 10px;
+      }
+      .circle {
+        border-radius: 50%;
+        background-color: green;
+      }
+      .rectangle {
+        background-color: red;
+      }
+      .main {
+        flex: 1;
+        background-color: bisque;
+        position: relative;
+      }
+      .placed {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="circle" id="circleBtn"></div>
+        <div class="rectangle" id="rectangleBtn"></div>
+      </div>
+      <div class="main"></div>
+    </div>
+
+    <script>
+      let selectedShape = null;
+
+      document.getElementById("circleBtn").addEventListener("click", (e) => {
+        //   e.stopPropagation();
+        selectedShape = "circle";
+        console.log("circle button clicked. ");
+      });
+
+      document.getElementById("rectangleBtn").addEventListener("click", (e) => {
+        //   e.stopPropagation();
+        selectedShape = "rectangle";
+        console.log("rectangle button clicked. ");
+      });
+
+      document.querySelector(".main").addEventListener("click", (e) => {
+        if (!selectedShape) return;
+
+        // Create a new element each time
+        const newElement = document.createElement("div");
+        newElement.className = selectedShape + " placed";
+        const mainRect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - mainRect.left;
+        const y = e.clientY - mainRect.top;
+
+        newElement.style.left = x - 55 + "px"; // Center the shape
+        newElement.style.top = y - 55 +"px";
+        e.currentTarget.appendChild(newElement);
+        console.log("main button clicked. ");
+      });
+    </script>
+  </body>
+</html>
