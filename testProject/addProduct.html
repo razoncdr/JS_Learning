@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="addProduct" style="display: flex; flex-direction: column; gap: 5px; width: 200px;">
+        <label for="productName" name="productName"></label>Product Name</label>
+            <input type="text" name="productName">
+
+        <label for="image">Product Image</label>
+        <input type="file" id="image" accept="image/*">
+        <label for="price" name="price">price</label>
+            <input type="text" name="price">
+        
+        <button type="submit" id="btn">Add</button>
+        <a href="dashboard.html">goto cart</a>
+    </form>
+
+    <script>
+        let form = document.querySelector('#addProduct');
+        let btn = document.querySelector('#btn');
+        btn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            let productName = form.productName.value;
+            let price = form.price.value;
+    
+            let products = JSON.parse(localStorage.getItem('products')||"[]");
+
+            let len = products.length;
+            let id = 1;
+            if(len){
+                id = products[len-1].id + 1;
+            }
+
+            const fileInput = document.getElementById("image");
+            const file = fileInput.files[0];
+            if(!file){
+                alert("Please select an image");
+                return ;
+            }
+            const reader = new FileReader();
+            let base64Image;
+            reader.onload = function(event){
+                base64Image = event.target.result;
+                const product = {id, image: base64Image, name: productName, price, quantity: 1};
+                
+                products.push(product);
+                localStorage.setItem('products', JSON.stringify(products));
+                form.reset();
+                alert(`${productName} is added to cart`);
+                window.location.href = "dashboard.html";
+            }
+            reader.readAsDataURL(file);
+        });
+
+        document.querySelector('#dashboard').addEventListener('click', (e)=>{
+            e.preventDefault();
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
